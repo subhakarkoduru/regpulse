@@ -1,0 +1,22 @@
+[project]
+name = "regpulse"
+version = "0.1.0"
+description = "Regulatory Change Impact Agent for mortgage/finance updates"
+requires-python = ">=3.11"
+
+dependencies = [
+    "httpx",
+    "beautifulsoup4",
+    "lxml",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
