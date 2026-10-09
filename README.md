@@ -50,6 +50,9 @@ import, and a supervisor graph treats each project as a sub-agent.
 
 ## Dev
 
+Working with Claude Code? See [docs/claude-code-setup.md](docs/claude-code-setup.md);
+project rules for Claude live in [CLAUDE.md](CLAUDE.md).
+
 ```bash
 pip install -e ".[dev]"
 pytest
