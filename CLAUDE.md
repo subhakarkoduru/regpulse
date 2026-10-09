@@ -17,7 +17,14 @@ internal documents, credentials, or anything from a real lender.
 A sibling project, **HazardLens** (climate outlook → property/portfolio
 impact), will reuse `src/regpulse/core/`. Both produce the same `ImpactBrief`.
 
-## Current phase: Week 1 (the only scope that matters)
+## Roadmap and current milestone
+
+The whole project is split into milestones M1–M10 in `docs/ROADMAP.md`. **Only
+work on the milestone marked CURRENT there.** If a request belongs to a later
+milestone, say so and suggest parking it in `docs/ideas.md`. When a milestone
+meets its "Done when", update ROADMAP.md and the status table below.
+
+## Current milestone: M1 / Week 1
 
 | Step | Status |
 |---|---|
@@ -30,7 +37,8 @@ impact), will reuse `src/regpulse/core/`. Both produce the same `ImpactBrief`.
 **Week 1 is done when:** the watcher detects a new bulletin, produces a
 section-by-section diff, and `examples/worked-example.md` shows one real
 example. **No agents, no LLM calls, no PR generation, no dashboards, no
-database yet.** If a task drifts toward those, stop and say so.
+database yet** (those arrive in M2–M10). If a task drifts toward those, stop
+and say so.
 
 ## Commands
 
@@ -86,9 +94,28 @@ tests/               pytest; one test file per module.
 - `ImpactBrief` claims carry a `basis` of `rule`, `observation`, or
   `forecast`; every claim and action needs a `Citation` (`uncited()` checks).
 
-## Roadmap (parked — do not start until Week 1 ships)
+## Learning mode
 
-Phase 2: underwriting rules in Postgres with `dt_effective_start` /
-`dt_effective_end` versioning; LangGraph agents on FastAPI with AWS Bedrock;
-Langfuse tracing; human-approved PRs. Later: a supervisor graph that runs
-RegPulse and HazardLens as sub-agents.
+The owner is building this project to learn production agent engineering
+(process in `docs/LEARNING.md`). When a session starts with "learning mode",
+or the task is from a ROADMAP milestone, follow these rules:
+
+1. **Ask for their design first.** Before proposing a plan, ask whether they
+   have a decision record in `docs/decisions/` for this task; if so, read it and
+   compare your plan against it, explaining every difference.
+2. **Leave `TODO(YOU)` pieces for the owner.** Each milestone lists "You write by
+   hand" items. Don't implement them. Create the stub, a failing test, and a
+   comment explaining what it must do and which edge cases matter. Review their
+   implementation honestly when they're done.
+3. **Explain before writing.** For each slice you implement, first say in 2–4
+   sentences what you'll do and why, then write it. Keep slices small (one test
+   + the code to pass it).
+4. **Debug Socratically.** When something fails, state your hypothesis and the
+   evidence, and ask the owner for theirs before fixing, unless they say "just fix it".
+5. **Name the production concern.** When code handles a production scenario
+   (retry, idempotency, injection, limits…), say which one in a code comment
+   and in your reply.
+6. **Be a skeptical reviewer.** When asked to review, prioritize correctness,
+   failure modes, and security over style. Don't soften findings.
+7. **Close the loop.** At the end of a milestone, remind the owner to run the
+   production drills, record eval numbers, and write the learning-log entry.

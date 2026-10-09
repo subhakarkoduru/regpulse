@@ -89,7 +89,8 @@ IDE's integrated one.
 Claude Code reads `CLAUDE.md` automatically, so it already knows the project,
 the Week 1 scope, and the rules. In the first session:
 
-1. Ask: `Summarize CLAUDE.md and the current Week 1 status in 5 bullets.`
+1. Ask: `learning mode. Summarize CLAUDE.md, the CURRENT milestone in
+   docs/ROADMAP.md, and the learning loop in docs/LEARNING.md in 5 bullets.`
    Confirm it understood before giving it work.
 2. Approve permissions as they come up. Safe to allow for this repo:
    `pytest`, `python -m regpulse.eval`, `pip install -e .`, `git status/diff/add/commit`.
@@ -97,7 +98,10 @@ the Week 1 scope, and the rules. In the first session:
 3. Use **plan mode** for anything non-trivial: type `/plan <task>` (or cycle
    modes with `Shift+Tab` in the terminal). Review the plan, then approve.
 
-## 6. Ready-to-paste prompts for the rest of Week 1
+## 6. Ready-to-paste prompts for the rest of Week 1 (M1)
+
+Later milestones (M2–M10) each have their own kickoff prompt in
+[ROADMAP.md](ROADMAP.md). Follow the loop in [LEARNING.md](LEARNING.md).
 
 Run them in order. Each one ends with tests passing and a commit on a branch.
 

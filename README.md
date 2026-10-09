@@ -40,13 +40,11 @@ tests/         Unit tests
 HazardLens both work end to end, `core/` moves to its own package that both
 import, and a supervisor graph treats each project as a sub-agent.
 
-## Roadmap (parked until Week 1 ships)
+## Roadmap
 
-- **Phase 2:** underwriting engine with rules in Postgres (not YAML) — each rule
-  carries `dt_effective_start` / `dt_effective_end`; a rule change expires the old
-  row and inserts a new one, giving a full audit trail. Loan decisions cite the
-  rule version in force. Plus an LLM chat UI that builds the loan file
-  conversationally. Demo: same loan file, decision flips before/after a reg change.
+Ten milestones from this skeleton to a deployed, production-hardened agent:
+[docs/ROADMAP.md](docs/ROADMAP.md). How to build it and learn along the way:
+[docs/LEARNING.md](docs/LEARNING.md).
 
 ## Dev
 
