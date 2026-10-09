@@ -5,6 +5,7 @@ Each case is a JSON file shaped like:
 ```json
 {
   "name": "dti-cap-tightened",
+  "kind": "section_diff",
   "old_sections": [
     {"section_id": "B3-6-02", "heading": "Debt-to-Income Ratios",
      "body": "The maximum DTI ratio is 50%."}
@@ -21,3 +22,5 @@ Each case is a JSON file shaped like:
 
 Target: ~30 historical cases over time. Week 1: first 3–5, each built from a
 real bulletin change.
+
+`kind` defaults to `section_diff`. Run with `python -m regpulse.eval [--golden-dir PATH]`.
