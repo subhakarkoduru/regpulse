@@ -21,24 +21,35 @@ No agents, no PR generation, no dashboards yet.
 
 ```
 src/regpulse/
-  models.py    Data models: Bulletin, GuideSection, SectionDiff
-  fetcher.py   Bulletin fetching (one source to start)
-  diff.py      Section-by-section diff of guide versions
-  eval.py      Golden-case eval harness
+  core/        Domain-neutral contract shared with HazardLens:
+    events.py    ChangeEvent — any external change (regulatory, climate, ...)
+    citations.py Citation — one format for every claim
+    brief.py     ImpactBrief — event, scope, claims (rule/observation/forecast),
+                 required actions, confidence; .uncited() guardrail hook
+    evals.py     Golden-case runner; projects register an evaluator per case kind
+  models.py    Regulatory models: GuideSection, GuideSnapshot, Bulletin, SectionDiff
+  fetcher.py   Bulletin (trigger) + guide snapshot (diff input) fetching
+  diff.py      Deterministic section-by-section diff, noise-normalized
+  eval.py      RegPulse "section_diff" evaluator + CLI
 evals/golden/  Golden eval cases (JSON) — target ~30 over time
 examples/      Real worked examples
 tests/         Unit tests
 ```
 
-## Roadmap (parked until Week 1 ships)
+`regpulse.core` must not import anything regulatory-specific. Once RegPulse and
+HazardLens both work end to end, `core/` moves to its own package that both
+import, and a supervisor graph treats each project as a sub-agent.
 
-- **Phase 2:** underwriting engine with rules in Postgres (not YAML) — each rule
-  carries `dt_effective_start` / `dt_effective_end`; a rule change expires the old
-  row and inserts a new one, giving a full audit trail. Loan decisions cite the
-  rule version in force. Plus an LLM chat UI that builds the loan file
-  conversationally. Demo: same loan file, decision flips before/after a reg change.
+## Roadmap
+
+Ten milestones from this skeleton to a deployed, production-hardened agent:
+[docs/ROADMAP.md](docs/ROADMAP.md). How to build it and learn along the way:
+[docs/LEARNING.md](docs/LEARNING.md).
 
 ## Dev
+
+Working with Claude Code? See [docs/claude-code-setup.md](docs/claude-code-setup.md);
+project rules for Claude live in [CLAUDE.md](CLAUDE.md).
 
 ```bash
 pip install -e ".[dev]"
